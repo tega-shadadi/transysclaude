@@ -1,0 +1,203 @@
+/*==================================
+            FOOTER
+===================================*/
+
+.footer{
+
+    background:#0f172a;
+
+    color:#cbd5e1;
+
+    padding:90px 0 35px;
+
+}
+
+.footer-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        2fr
+        1fr
+        1fr
+        1.2fr;
+
+    gap:60px;
+
+    margin-bottom:60px;
+
+}
+
+.footer-logo{
+
+    display:inline-block;
+
+    font-size:1.75rem;
+
+    font-weight:800;
+
+    color:white;
+
+    text-decoration:none;
+
+    margin-bottom:20px;
+
+}
+
+.footer-description{
+
+    color:#94a3b8;
+
+    line-height:1.8;
+
+    margin-bottom:30px;
+
+    max-width:380px;
+
+}
+
+.footer-column h3{
+
+    color:white;
+
+    font-size:1.1rem;
+
+    margin-bottom:25px;
+
+}
+
+.footer-column ul{
+
+    list-style:none;
+
+    padding:0;
+
+    margin:0;
+
+}
+
+.footer-column li{
+
+    margin-bottom:16px;
+
+}
+
+.footer-column a{
+
+    text-decoration:none;
+
+    color:#94a3b8;
+
+    transition:var(--transition-fast);
+
+}
+
+.footer-column a:hover{
+
+    color:white;
+
+    padding-left:6px;
+
+}
+
+.footer-social{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+.footer-social a{
+
+    width:44px;
+
+    height:44px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:rgba(255,255,255,.06);
+
+    border-radius:50%;
+
+    color:white;
+
+    transition:var(--transition-base);
+
+}
+
+.footer-social a:hover{
+
+    background:var(--color-primary);
+
+    transform:translateY(-4px);
+
+}
+
+.footer-social svg{
+
+    width:20px;
+
+    height:20px;
+
+}
+
+.contact-list li{
+
+    color:#94a3b8;
+
+    line-height:1.8;
+
+}
+
+.footer-bottom{
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    padding-top:30px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+}
+
+.footer-bottom p{
+
+    color:#64748b;
+
+}
+
+.footer-bottom div{
+
+    display:flex;
+
+    gap:30px;
+
+}
+
+.footer-bottom a{
+
+    color:#94a3b8;
+
+    text-decoration:none;
+
+    transition:var(--transition-fast);
+
+}
+
+.footer-bottom a:hover{
+
+    color:white;
+
+}
