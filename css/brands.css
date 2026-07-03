@@ -1,0 +1,225 @@
+.brands{
+
+    padding:70px 0;
+
+    overflow:hidden;
+
+    background:var(--color-bg-light);
+
+}
+
+.brands-title{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+    color:var(--color-text-light);
+
+    font-weight:600;
+
+}
+
+.brands-slider{
+
+    overflow:hidden;
+
+}
+
+.brands-track{
+
+    display:flex;
+
+    width:max-content;
+
+    gap:70px;
+
+    animation:scrollBrands 25s linear infinite;
+
+}
+
+.brands-track img{
+
+    height:40px;
+
+    width:auto;
+
+    opacity:.8;
+
+    transition:.3s;
+
+}
+
+.brands-track img:hover{
+
+    opacity:1;
+
+    transform:scale(1.1);
+
+}
+
+@keyframes scrollBrands{
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-50%);
+    }
+
+}
+
+/* ========================
+   BRANDS MARQUEE
+======================== */
+.brands {
+  padding-block: 52px;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-white);
+  overflow: hidden;
+}
+
+.brands-title {
+  font-size: 0.8125rem;
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-light);
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+/* Slider viewport — masks overflow on both sides */
+.brands-slider {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Fade-out edges */
+.brands-slider::before,
+.brands-slider::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.brands-slider::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-white), transparent);
+}
+
+.brands-slider::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-white), transparent);
+}
+
+/* The track that scrolls */
+.brands-track {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  width: max-content;
+  animation: brands-scroll 28s linear infinite;
+}
+
+.brands-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes brands-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Logo images */
+.brands-track img {
+  height: 36px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  filter: grayscale(1) opacity(0.55);
+  transition: filter var(--transition-base), transform var(--transition-base);
+  display: block;
+  flex-shrink: 0;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.brands-track img:hover {
+  filter: grayscale(0) opacity(1);
+  transform: scale(1.08);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .brands-track {
+    gap: 40px;
+    animation-duration: 18s;
+  }
+
+  .brands-track img {
+    height: 28px;
+  }
+
+  .brands-slider::before,
+  .brands-slider::after {
+    width: 60px;
+  }
+}
+
+.hero__trust{
+    margin-top:40px;
+}
+
+.hero__trust-label{
+    font-size:0.9rem;
+    font-weight:600;
+    color:var(--color-text-light);
+    margin-bottom:16px;
+}
+
+/* container that hides overflow */
+.brands-slider{
+    width:100%;
+    overflow:hidden;
+}
+
+/* moving track */
+.brands-track{
+    display:flex;
+    align-items:center;
+    gap:60px;
+    width:max-content;
+    animation:scrollBrands 25s linear infinite;
+}
+
+/* logos */
+.brands-track img{
+    height:34px;
+    width:auto;
+    flex-shrink:0;
+    opacity:0.75;
+    transition:0.3s ease;
+}
+
+/* hover effect */
+.brands-track img:hover{
+    opacity:1;
+    transform:scale(1.08);
+}
+
+/* smooth infinite scroll */
+@keyframes scrollBrands{
+    0%{
+        transform:translateX(0);
+    }
+    100%{
+        transform:translateX(-50%);
+    }
+}
