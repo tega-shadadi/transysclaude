@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>DashNetworks — Guest Access</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #080b10;
+    --bg-2: #0d131a;
+    --surface: #121922;
+    --surface-2: #182029;
+    --border: rgba(255,255,255,0.08);
+    --accent: #00e5c7;
+    --accent-soft: rgba(0,229,199,0.14);
+    --accent-dim: rgba(0,229,199,0.45);
+    --warn: #ffb454;
+    --text: #eaf4f2;
+    --text-muted: #7c93a0;
+    --text-faint: #4a5c66;
+    --radius: 18px;
+  }
+
+  *{ box-sizing: border-box; }
+  html,body{ height:100%; }
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(0,229,199,0.07), transparent 60%),
+      var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 28px 16px;
+    overflow-x:hidden;
+  }
+
+  .app{
+    position:relative;
+    width:100%;
+    max-width: 420px;
+  }
+
+  /* ---------- ambient signal rings ---------- */
+  .bg-signal{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  .bg-signal svg{
+    width: 900px;
+    max-width: none;
+    opacity: 0.5;
+  }
+  .bg-signal circle{
+    fill:none;
+    stroke: var(--accent);
+    stroke-opacity: 0.08;
+    stroke-width: 1;
+    transform-origin: center;
+    animation: ring-expand 6s ease-out infinite;
+  }
+  .bg-signal circle:nth-child(2){ animation-delay: 1.5s; }
+  .bg-signal circle:nth-child(3){ animation-delay: 3s; }
+  .bg-signal circle:nth-child(4){ animation-delay: 4.5s; }
+  @keyframes ring-expand{
+    0%   { r: 20; stroke-opacity: 0.22; }
+    100% { r: 260; stroke-opacity: 0; }
+  }
+
+  /* ---------- status bar ---------- */
+  .statusbar{
+    position:relative;
+    z-index:1;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding: 8px 14px;
+    margin-bottom: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.03em;
+    color: var(--text-muted);
+  }
+  .statusbar .dot{
+    width:6px; height:6px; border-radius:50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 var(--accent-soft);
+    animation: dot-pulse 2.2s ease-in-out infinite;
+    flex-shrink:0;
+  }
+  @keyframes dot-pulse{
+    0%,100% { box-shadow: 0 0 0 0 var(--accent-soft); }
+    50%     { box-shadow: 0 0 0 5px transparent; }
+  }
+  .statusbar .ssid{ flex:1; color: var(--text); }
+  .statusbar .bars{ display:flex; align-items:flex-end; gap:2px; height:10px; }
+  .statusbar .bars i{
+    display:block; width:3px; background: var(--accent-dim); border-radius:1px;
+  }
+  .statusbar .bars i:nth-child(1){ height:4px; }
+  .statusbar .bars i:nth-child(2){ height:7px; background:var(--accent); }
+  .statusbar .bars i:nth-child(3){ height:10px; background:var(--accent); }
+
+  /* ---------- card ---------- */
+  .card{
+    position:relative;
+    z-index:1;
+    background: linear-gradient(180deg, var(--surface) 0%, var(--bg-2) 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 34px 26px 28px;
+    min-height: 480px;
+    display:flex;
+    flex-direction:column;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
+  }
+
+  .screen{ display:none; flex-direction:column; flex:1; }
+  .screen.active{ display:flex; animation: screen-in 0.45s ease; }
+  @keyframes screen-in{
+    from { opacity:0; transform: translateY(6px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+
+  /* ---------- splash ---------- */
+  .splash{ align-items:flex-start; justify-content:center; text-align:left; flex:1; }
+  .wordmark{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size: 44px;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    margin: 0 0 18px;
+    color: var(--text);
+  }
+  .wordmark span{
+    display:block;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+  .morse-rule{
+    display:flex;
+    gap:6px;
+    margin-bottom: 22px;
+  }
+  .morse-rule span{
+    height:3px;
+    border-radius:2px;
+    background: var(--accent);
+    opacity:0;
+    animation: dash-draw 0.5s ease forwards;
+  }
+  .morse-rule span:nth-child(1){ width:14px; animation-delay:0.1s; }
+  .morse-rule span:nth-child(2){ width:28px; animation-delay:0.28s; }
+  .morse-rule span:nth-child(3){ width:42px; animation-delay:0.46s; }
+  @keyframes dash-draw{ to{ opacity:1; } }
+
+  .tagline{
+    font-size: 15px;
+    line-height:1.55;
+    color: var(--text-muted);
+    margin: 0 0 30px;
+    max-width: 30ch;
+  }
+
+  .btn-primary{
+    margin-top:auto;
+    width:100%;
+    background: var(--accent);
+    color: #06201c;
+    border:none;
+    border-radius: 12px;
+    padding: 15px 18px;
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size: 15px;
+    cursor:pointer;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+  }
+  .btn-primary:hover{ opacity:0.92; }
+  .btn-primary:active{ transform: scale(0.985); }
+  .btn-primary:focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .btn-secondary{
+    width:100%;
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 13px 18px;
+    font-family:'Inter', sans-serif;
+    font-weight:500;
+    font-size: 14px;
+    cursor:pointer;
+    margin-top: 18px;
+  }
+  .btn-secondary:hover{ color: var(--text); border-color: var(--accent-dim); }
+
+  /* ---------- screen head ---------- */
+  .screen-head{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom: 22px;
+  }
+  .screen-head h2{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: 19px;
+    font-weight:600;
+    margin:0;
+  }
+  .back{
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    width:32px; height:32px;
+    border-radius: 9px;
+    cursor:pointer;
+    font-size:15px;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .back:hover{ color:var(--text); }
+
+  /* ---------- plans ---------- */
+  .plan-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .plan-card{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    text-align:left;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 14px;
+    cursor:pointer;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+    font-family:'Inter', sans-serif;
+    color:var(--text);
+  }
+  .plan-card:hover{ border-color: var(--accent-dim); transform: translateY(-1px); }
+  .plan-card:focus-visible{ outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .morse{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    width:34px;
+    flex-shrink:0;
+  }
+  .morse span{
+    height:3px;
+    border-radius:2px;
+    background: var(--accent);
+  }
+  .morse--day span{ width:14px; }
+  .morse--week span:nth-child(1){ width:20px; }
+  .morse--week span:nth-child(2){ width:20px; opacity:0.6; }
+  .morse--month span:nth-child(1){ width:28px; }
+  .morse--month span:nth-child(2){ width:28px; opacity:0.75; }
+  .morse--month span:nth-child(3){ width:28px; opacity:0.5; }
+
+  .plan-info{ flex:1; min-width:0; }
+  .plan-name{
+    margin:0 0 2px;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-family:'JetBrains Mono', monospace;
+  }
+  .plan-duration{
+    margin:0 0 4px;
+    font-family:'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight:600;
+  }
+  .plan-desc{
+    margin:0;
+    font-size: 12px;
+    line-height:1.4;
+    color: var(--text-muted);
+  }
+  .plan-price{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 15px;
+    font-weight:500;
+    text-align:right;
+    white-space:nowrap;
+    margin:0;
+    flex-shrink:0;
+  }
+  .plan-price span{
+    display:block;
+    font-size: 9.5px;
+    color: var(--text-faint);
+    letter-spacing:0.08em;
+    margin-top:2px;
+  }
+
+  /* ---------- checkout ---------- */
+  .summary{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    background: var(--accent-soft);
+    border: 1px solid rgba(0,229,199,0.25);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 22px;
+  }
+  .summary-label{
+    margin:0;
+    font-size:13px;
+    color: var(--text);
+    font-weight:500;
+  }
+  .summary-price{
+    margin:0;
+    font-family:'JetBrains Mono', monospace;
+    font-weight:600;
+    color: var(--accent);
+  }
+
+  .field{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+    margin-bottom:16px;
+    font-size:12.5px;
+    color:var(--text-muted);
+  }
+  .field input{
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 13px 14px;
+    color: var(--text);
+    font-family:'JetBrains Mono', monospace;
+    font-size:15px;
+  }
+  .field input:focus{ outline:none; border-color: var(--accent-dim); }
+  .field input::placeholder{ color: var(--text-faint); }
+
+  .momo-select{
+    display:flex;
+    gap:8px;
+    margin-bottom:22px;
+  }
+  .momo{
+    flex:1;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    border-radius: 11px;
+    padding: 12px 8px;
+    font-size:13px;
+    font-weight:500;
+    cursor:pointer;
+    font-family:'Inter', sans-serif;
+  }
+  .momo.active{
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  .fineprint{
+    font-size: 11.5px;
+    color: var(--text-faint);
+    text-align:center;
+    margin: 14px 0 0;
+    line-height:1.5;
+  }
+
+  /* ---------- connecting ---------- */
+  .connecting{ align-items:center; justify-content:center; text-align:center; flex:1; }
+  .pulse-line{
+    position:relative;
+    width: 100%;
+    height: 3px;
+    background: var(--surface-2);
+    border-radius: 3px;
+    margin-bottom: 26px;
+    overflow:hidden;
+  }
+  .pulse-line span{
+    position:absolute;
+    top:0; left:-40%;
+    width:40%; height:100%;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    animation: transmit 1.1s linear infinite;
+  }
+  @keyframes transmit{
+    to{ left:100%; }
+  }
+  .connecting h2{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:18px;
+    font-weight:600;
+    margin:0 0 8px;
+    max-width: 26ch;
+  }
+
+  /* ---------- connected ---------- */
+  .connected{ align-items:center; justify-content:center; text-align:center; flex:1; }
+  .ring-timer{
+    position:relative;
+    width:150px; height:150px;
+    margin-bottom:20px;
+  }
+  .ring-timer svg{ width:100%; height:100%; transform: rotate(-90deg); }
+  .ring-bg{ fill:none; stroke: var(--surface-2); stroke-width:5; }
+  .ring-fg{
+    fill:none; stroke: var(--accent); stroke-width:5; stroke-linecap:round;
+    stroke-dasharray: 327; stroke-dashoffset: 0;
+    animation: ring-spin 3s linear infinite;
+    transform-origin: 60px 60px;
+  }
+  @keyframes ring-spin{
+    0%{ stroke-dashoffset: 327; opacity:0.35; }
+    50%{ stroke-dashoffset: 60; opacity:1; }
+    100%{ stroke-dashoffset: 327; opacity:0.35; }
+  }
+  .ring-time{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 17px;
+    font-weight:600;
+    color: var(--text);
+  }
+  .plan-caption{
+    font-size:13px;
+    color: var(--text-muted);
+    margin: 0 0 6px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-signal" aria-hidden="true">
+  <svg viewBox="0 0 400 400">
+    <circle cx="200" cy="200" r="20"></circle>
+    <circle cx="200" cy="200" r="20"></circle>
+    <circle cx="200" cy="200" r="20"></circle>
+    <circle cx="200" cy="200" r="20"></circle>
+  </svg>
+</div>
+
+<div class="app">
+
+  <div class="statusbar">
+    <span class="dot"></span>
+    <span class="ssid">DashNetworks · Guest</span>
+    <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+  </div>
+
+  <main class="card">
+
+    <!-- SPLASH -->
+    <section class="screen splash active" data-screen="splash">
+      <p class="eyebrow">Guest network access</p>
+      <h1 class="wordmark">DASH<span>NETWORKS</span></h1>
+      <div class="morse-rule" aria-hidden="true"><span></span><span></span><span></span></div>
+      <p class="tagline">Every dash is time on the line. Pick a length, get connected.</p>
+      <button class="btn-primary" data-next="plans">Get connected</button>
+    </section>
+
+    <!-- PLANS -->
+    <section class="screen plans" data-screen="plans">
+      <div class="screen-head">
+        <button class="back" data-back="splash" aria-label="Back">←</button>
+        <h2>Choose your dash</h2>
+      </div>
+      <div class="plan-list">
+
+        <button class="plan-card" data-plan="day">
+          <div class="morse morse--day" aria-hidden="true"><span></span></div>
+          <div class="plan-info">
+            <p class="plan-name">Short dash</p>
+            <p class="plan-duration">1 Day</p>
+            <p class="plan-desc">Enough runway for the day — messages, maps, mobile money.</p>
+          </div>
+          <p class="plan-price">1,000<span>UGX</span></p>
+        </button>
+
+        <button class="plan-card" data-plan="week">
+          <div class="morse morse--week" aria-hidden="true"><span></span><span></span></div>
+          <div class="plan-info">
+            <p class="plan-name">Medium dash</p>
+            <p class="plan-duration">1 Week</p>
+            <p class="plan-desc">A steady signal that carries you through the week.</p>
+          </div>
+          <p class="plan-price">6,000<span>UGX</span></p>
+        </button>
+
+        <button class="plan-card" data-plan="month">
+          <div class="morse morse--month" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="plan-info">
+            <p class="plan-name">Long dash</p>
+            <p class="plan-duration">1 Month</p>
+            <p class="plan-desc">Full-length connection all month. Best value per day.</p>
+          </div>
+          <p class="plan-price">26,000<span>UGX</span></p>
+        </button>
+
+      </div>
+    </section>
+
+    <!-- CHECKOUT -->
+    <section class="screen checkout" data-screen="checkout">
+      <div class="screen-head">
+        <button class="back" data-back="plans" aria-label="Back">←</button>
+        <h2>Activate your dash</h2>
+      </div>
+
+      <div class="summary">
+        <p class="summary-label" id="sumName">Short dash · 1 Day</p>
+        <p class="summary-price" id="sumPrice">1,000 UGX</p>
+      </div>
+
+      <label class="field">
+        <span>Phone number</span>
+        <input type="tel" id="phone" placeholder="07XX XXX XXX" inputmode="numeric" autocomplete="tel">
+      </label>
+
+      <div class="momo-select">
+        <button class="momo active" data-momo="mtn" type="button">MTN MoMo</button>
+        <button class="momo" data-momo="airtel" type="button">Airtel Money</button>
+      </div>
+
+      <button class="btn-primary" id="activateBtn">Send activation request</button>
+      <p class="fineprint">You'll get a prompt on your phone to approve the payment.</p>
+    </section>
+
+    <!-- CONNECTING -->
+    <section class="screen connecting" data-screen="connecting">
+      <div class="pulse-line" aria-hidden="true"><span></span></div>
+      <h2>Sending your dash to the tower…</h2>
+      <p class="fineprint">Approve the prompt on your phone to finish.</p>
+    </section>
+
+    <!-- CONNECTED -->
+    <section class="screen connected" data-screen="connected">
+      <p class="eyebrow">You're on the line</p>
+      <div class="ring-timer">
+        <svg viewBox="0 0 120 120">
+          <circle class="ring-bg" cx="60" cy="60" r="52"></circle>
+          <circle class="ring-fg" cx="60" cy="60" r="52"></circle>
+        </svg>
+        <div class="ring-time" id="timeLeft">24:00:00</div>
+      </div>
+      <p class="plan-caption" id="connectedPlan">Short dash · 1 Day</p>
+      <button class="btn-secondary" data-next="plans">Change plan</button>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  const PLANS = {
+    day:   { name:"Short dash",  duration:"1 Day",   price:"1,000 UGX",  seconds: 86400 },
+    week:  { name:"Medium dash", duration:"1 Week",  price:"6,000 UGX",  seconds: 604800 },
+    month: { name:"Long dash",   duration:"1 Month", price:"26,000 UGX", seconds: 2592000 }
+  };
+
+  let selectedKey = "day";
+  let remaining = PLANS.day.seconds;
+  let countdownTimer = null;
+
+  const screens = document.querySelectorAll('.screen');
+  function showScreen(name){
+    screens.forEach(s => s.classList.toggle('active', s.dataset.screen === name));
+  }
+
+  document.querySelectorAll('[data-next]').forEach(el => {
+    el.addEventListener('click', () => showScreen(el.dataset.next));
+  });
+  document.querySelectorAll('[data-back]').forEach(el => {
+    el.addEventListener('click', () => showScreen(el.dataset.back));
+  });
+
+  document.querySelectorAll('.plan-card').forEach(card => {
+    card.addEventListener('click', () => {
+      selectedKey = card.dataset.plan;
+      const p = PLANS[selectedKey];
+      document.getElementById('sumName').textContent = p.name + ' · ' + p.duration;
+      document.getElementById('sumPrice').textContent = p.price;
+      showScreen('checkout');
+    });
+  });
+
+  document.querySelectorAll('.momo').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.momo').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  function formatTime(totalSeconds){
+    const days = Math.floor(totalSeconds / 86400);
+    const hrs  = Math.floor((totalSeconds % 86400) / 3600);
+    const mins = Math.floor((totalSeconds % 3600) / 60);
+    const secs = Math.floor(totalSeconds % 60);
+    const pad = n => String(n).padStart(2, '0');
+    if (days > 0){
+      return days + 'd ' + pad(hrs) + ':' + pad(mins) + ':' + pad(secs);
+    }
+    return pad(hrs) + ':' + pad(mins) + ':' + pad(secs);
+  }
+
+  function startCountdown(){
+    const p = PLANS[selectedKey];
+    remaining = p.seconds;
+    document.getElementById('connectedPlan').textContent = p.name + ' · ' + p.duration;
+    document.getElementById('timeLeft').textContent = formatTime(remaining);
+    if (countdownTimer) clearInterval(countdownTimer);
+    countdownTimer = setInterval(() => {
+      remaining -= 1;
+      if (remaining <= 0){
+        clearInterval(countdownTimer);
+        remaining = 0;
+      }
+      document.getElementById('timeLeft').textContent = formatTime(remaining);
+    }, 1000);
+  }
+
+  document.getElementById('activateBtn').addEventListener('click', () => {
+    showScreen('connecting');
+    setTimeout(() => {
+      showScreen('connected');
+      startCountdown();
+    }, 2200);
+  });
+})();
+</script>
+
+</body>
+</html>
