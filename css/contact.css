@@ -1,0 +1,83 @@
+.contact{
+    padding:100px 0;
+    background:var(--color-bg-light);
+}
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:60px;
+    align-items:start;
+}
+
+.contact-info h2{
+    font-size:2rem;
+    font-weight:800;
+    color:var(--color-heading);
+    margin:20px 0;
+}
+
+.contact-info p{
+    color:var(--color-text);
+    line-height:1.7;
+}
+
+.contact-details{
+    margin-top:30px;
+    display:grid;
+    gap:20px;
+}
+
+.contact-item{
+    background:var(--color-white);
+    padding:15px 20px;
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-sm);
+    border:1px solid var(--color-border);
+}
+
+.contact-item strong{
+    display:block;
+    color:var(--color-heading);
+    margin-bottom:5px;
+}
+
+.contact-item p{
+    margin:0;
+    color:var(--color-text-light);
+}
+
+/* Right card */
+.contact-card{
+    background:var(--color-white);
+    padding:30px;
+    border-radius:var(--radius-xl);
+    box-shadow:var(--shadow-md);
+    border:1px solid var(--color-border);
+    position:sticky;
+    top:100px;
+}
+
+.contact-card h3{
+    font-size:1.3rem;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.contact-card p{
+    color:var(--color-text);
+    margin-bottom:20px;
+}
+
+.contact-card .btn{
+    width:100%;
+    margin-bottom:10px;
+    text-align:center;
+}
+
+.contact-note{
+    margin-top:10px;
+    font-size:0.85rem;
+    color:var(--color-text-light);
+    text-align:center;
+}
