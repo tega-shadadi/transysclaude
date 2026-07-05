@@ -31,19 +31,18 @@
 .footer-logo{
 
     display:inline-block;
-
-    font-size:1.75rem;
-
-    font-weight:800;
-
-    color:white;
-
-    text-decoration:none;
-
-    margin-bottom:20px;
+    max-height: 100px;
 
 }
 
+.footer-logo1 img{
+
+  max-height: 18rem;
+  margin-top: -118px;
+  margin-bottom: -110px;
+
+
+}
 .footer-description{
 
     color:#94a3b8;

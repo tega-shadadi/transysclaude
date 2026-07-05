@@ -190,3 +190,9 @@
 
   .training-teaser__actions .btn { width: 100%; justify-content: center; }
 }
+
+.training-logo {
+  display: inline-block;
+  max-height: 12rem;
+  
+}

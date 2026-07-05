@@ -163,6 +163,7 @@
 
 .logo-mark__badge img{
   max-height: 12rem;
+  margin-top: 10px;
 }
 
 @media (max-width: 640px) {
