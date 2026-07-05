@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WiFi Hotspot Business Training — 7-Day Course — Transys Network Solutions</title>
+<meta name="description" content="Learn to install, configure and run a profitable WiFi hotspot business in Uganda. 7-day hands-on training covering MikroTik, cabling, billing systems and business setup." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --color-primary: #2563eb;
+  --color-primary-dark: #1d4ed8;
+  --color-primary-light: #dbeafe;
+  --color-dark: #0f172a;
+  --color-heading: #020617;
+  --color-text: #334155;
+  --color-text-light: #64748b;
+  --color-accent: #0d9488;
+  --color-accent-light: #ccfbf1;
+  --color-bg: #ffffff;
+  --color-bg-light: #f8fafc;
+  --color-border: #e2e8f0;
+  --color-white: #ffffff;
+  --font-main: "Inter",-apple-system,BlinkMacSystemFont,sans-serif;
+  --fw-regular:400;--fw-medium:500;--fw-semibold:600;--fw-bold:700;--fw-extrabold:800;
+  --tracking-tight:-0.03em;
+  --radius-sm:10px;--radius-md:14px;--radius-lg:20px;--radius-xl:24px;--radius-full:999px;
+  --shadow-sm:0 2px 8px rgba(15,23,42,.06);
+  --shadow-md:0 10px 40px rgba(15,23,42,.08);
+  --shadow-lg:0 20px 60px rgba(15,23,42,.12);
+  --ease:cubic-bezier(0.16,1,0.3,1);
+  --transition-fast:0.2s var(--ease);
+  --transition-base:0.35s var(--ease);
+  --nav-height:80px;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font-main);color:var(--color-text);background:var(--color-bg);-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+
+.container{width:100%;max-width:1280px;margin-inline:auto;padding-inline:24px}
+
+/* NAV */
+.navbar{position:fixed;top:0;left:0;right:0;height:var(--nav-height);display:flex;align-items:center;z-index:1000;background:rgba(255,255,255,0.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--color-border)}
+.navbar__inner{display:flex;align-items:center;justify-content:space-between;width:100%}
+.navbar__brand{display:flex;align-items:center;gap:10px;font-weight:var(--fw-extrabold);font-size:1.0625rem;color:var(--color-heading)}
+.logo-mark{width:32px;height:32px;border-radius:8px;background:var(--color-dark);display:flex;align-items:center;justify-content:center}
+.logo-mark svg{width:18px;height:18px}
+.navbar__links{display:flex;align-items:center;gap:28px}
+.navbar__links a{font-size:0.9375rem;font-weight:var(--fw-medium);color:var(--color-text);transition:color var(--transition-fast)}
+.navbar__links a:hover{color:var(--color-heading)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:var(--radius-md);font-weight:var(--fw-semibold);font-size:0.9375rem;white-space:nowrap;transition:transform var(--transition-fast),box-shadow var(--transition-fast),background var(--transition-fast)}
+.btn svg{width:17px;height:17px}
+.btn-primary{background:var(--color-dark);color:white;box-shadow:var(--shadow-sm)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.btn-accent{background:var(--color-accent);color:white}
+.btn-accent:hover{background:#0f766e;transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.btn-wa{background:#25d366;color:white}
+.btn-wa:hover{background:#1fba58;transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--color-white);border:1.5px solid rgba(255,255,255,0.3)}
+.btn-outline:hover{background:rgba(255,255,255,0.1);transform:translateY(-2px)}
+
+/* HERO */
+.training-hero{padding-top:calc(var(--nav-height) + 56px);padding-bottom:72px;background:linear-gradient(135deg,#0F172A 0%,#1E3A8A 55%,#0D9488 100%);position:relative;overflow:hidden}
+.training-hero::before{content:"";position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(20,184,166,0.18) 0%,transparent 70%);border-radius:50%}
+.training-hero__inner{position:relative;z-index:1;max-width:900px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:0.8125rem;font-weight:var(--fw-semibold);letter-spacing:0.04em;text-transform:uppercase;padding:6px 14px;border-radius:var(--radius-full)}
+.eyebrow-teal{color:#14B8A6;background:rgba(20,184,166,0.12);border:1px solid rgba(20,184,166,0.25);margin-bottom:22px}
+.eyebrow svg{width:13px;height:13px}
+.training-hero h1{font-size:clamp(2rem,4.5vw,3.5rem);font-weight:var(--fw-extrabold);letter-spacing:var(--tracking-tight);color:var(--color-white);line-height:1.1;margin-bottom:20px}
+.training-hero h1 span{color:#14B8A6}
+.training-hero p{font-size:1.125rem;color:rgba(255,255,255,0.65);line-height:1.7;max-width:640px;margin-bottom:40px}
+.training-hero__actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:56px}
+.training-hero__stats{display:flex;gap:40px;flex-wrap:wrap}
+.hero-stat strong{display:block;font-size:2rem;font-weight:var(--fw-extrabold);color:var(--color-white);letter-spacing:var(--tracking-tight)}
+.hero-stat span{font-size:0.875rem;color:rgba(255,255,255,0.5);font-weight:var(--fw-medium)}
+
+/* OUTCOMES */
+.outcomes{padding-block:80px;background:var(--color-bg-light)}
+.section-head{margin-bottom:48px}
+.section-head.center{text-align:center;max-width:640px;margin-inline:auto;margin-bottom:48px}
+.section-head h2{font-size:clamp(1.75rem,3vw,2.5rem);font-weight:var(--fw-extrabold);letter-spacing:var(--tracking-tight);color:var(--color-heading);margin-top:14px;margin-bottom:14px}
+.section-head p{font-size:1rem;color:var(--color-text-light);line-height:1.7}
+.outcomes__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.outcome-card{background:var(--color-white);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:26px;transition:transform var(--transition-base),box-shadow var(--transition-base)}
+.outcome-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md)}
+.outcome-card .icon-wrap{width:46px;height:46px;border-radius:var(--radius-md);background:var(--color-accent-light);color:var(--color-accent);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.outcome-card .icon-wrap svg{width:22px;height:22px}
+.outcome-card h4{font-size:0.9375rem;font-weight:var(--fw-bold);color:var(--color-heading);margin-bottom:6px}
+.outcome-card p{font-size:0.875rem;color:var(--color-text-light);line-height:1.6}
+
+/* COURSE OUTLINE */
+.course{padding-block:80px}
+.course__layout{display:grid;grid-template-columns:260px 1fr;gap:56px;align-items:start}
+.course__toc{position:sticky;top:calc(var(--nav-height) + 24px)}
+.course__toc-title{font-size:0.75rem;font-weight:var(--fw-bold);text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-light);margin-bottom:14px}
+.day-nav{display:flex;flex-direction:column;gap:4px}
+.day-nav a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--radius-sm);font-size:0.875rem;font-weight:var(--fw-medium);color:var(--color-text-light);border-left:2px solid transparent;transition:all var(--transition-fast)}
+.day-nav a:hover,.day-nav a.is-active{color:var(--color-accent);background:var(--color-accent-light);border-left-color:var(--color-accent)}
+.day-nav a .day-num{width:22px;height:22px;border-radius:50%;background:var(--color-border);font-size:0.75rem;font-weight:var(--fw-bold);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background var(--transition-fast),color var(--transition-fast)}
+.day-nav a.is-active .day-num,.day-nav a:hover .day-num{background:var(--color-accent);color:white}
+.course__toc-cta{margin-top:24px;background:var(--color-dark);border-radius:var(--radius-lg);padding:20px}
+.course__toc-cta p{font-size:0.8125rem;color:rgba(255,255,255,0.55);margin-bottom:12px;line-height:1.5}
+.course__toc-cta .btn{width:100%;font-size:0.8125rem;padding:10px}
+
+/* Days */
+.day-block{margin-bottom:56px;scroll-margin-top:calc(var(--nav-height) + 32px)}
+.day-block:last-child{margin-bottom:0}
+.day-header{display:flex;align-items:center;gap:16px;margin-bottom:28px;padding-bottom:20px;border-bottom:2px solid var(--color-border)}
+.day-badge{width:52px;height:52px;border-radius:var(--radius-md);background:linear-gradient(135deg,var(--color-dark),#1E3A8A);color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
+.day-badge .day-word{font-size:0.55rem;font-weight:var(--fw-bold);text-transform:uppercase;letter-spacing:0.06em;color:rgba(255,255,255,0.5)}
+.day-badge .day-n{font-size:1.25rem;font-weight:var(--fw-extrabold);color:white;line-height:1}
+.day-header h2{font-size:1.25rem;font-weight:var(--fw-extrabold);color:var(--color-heading)}
+.day-header p{font-size:0.875rem;color:var(--color-text-light);margin-top:2px}
+.modules-grid{display:flex;flex-direction:column;gap:14px}
+.module-card{background:var(--color-bg-light);border:1px solid var(--color-border);border-radius:var(--radius-lg);overflow:hidden}
+.module-card__head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;cursor:pointer;user-select:none}
+.module-card__title{display:flex;align-items:center;gap:12px}
+.module-num{font-size:0.75rem;font-weight:var(--fw-bold);color:var(--color-accent);background:var(--color-accent-light);padding:3px 10px;border-radius:var(--radius-full)}
+.module-card__title h3{font-size:0.9375rem;font-weight:var(--fw-bold);color:var(--color-heading)}
+.module-toggle{width:28px;height:28px;border-radius:50%;background:var(--color-border);display:flex;align-items:center;justify-content:center;transition:background var(--transition-fast)}
+.module-toggle svg{width:14px;height:14px;color:var(--color-text-light);transition:transform var(--transition-base)}
+.module-card.is-open .module-toggle{background:var(--color-accent-light)}
+.module-card.is-open .module-toggle svg{transform:rotate(45deg);color:var(--color-accent)}
+.module-body{max-height:0;overflow:hidden;transition:max-height 0.4s var(--ease)}
+.module-card.is-open .module-body{max-height:600px}
+.module-body__inner{padding:0 22px 22px}
+.module-items{display:flex;flex-direction:column;gap:8px}
+.module-item{display:flex;align-items:flex-start;gap:10px;font-size:0.875rem;color:var(--color-text);line-height:1.6}
+.module-item::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--color-accent);flex-shrink:0;margin-top:7px}
+.practical-box{margin-top:16px;background:white;border:1px solid var(--color-border);border-radius:var(--radius-md);padding:16px 18px}
+.practical-box h4{font-size:0.8125rem;font-weight:var(--fw-bold);text-transform:uppercase;letter-spacing:0.04em;color:var(--color-accent);margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.practical-box h4 svg{width:13px;height:13px}
+.practical-box ul{display:flex;flex-direction:column;gap:6px}
+.practical-box ul li{display:flex;align-items:flex-start;gap:8px;font-size:0.875rem;color:var(--color-text-light);line-height:1.5}
+.practical-box ul li::before{content:"→";color:var(--color-accent);font-size:0.75rem;margin-top:2px;flex-shrink:0}
+
+/* ENROL CTA */
+.enrol{padding-block:80px;background:linear-gradient(135deg,#0F172A 0%,#1E3A8A 60%,#0D9488 100%);position:relative;overflow:hidden}
+.enrol::before{content:"";position:absolute;bottom:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(20,184,166,0.2) 0%,transparent 70%);border-radius:50%}
+.enrol__inner{position:relative;z-index:1;text-align:center;max-width:640px;margin-inline:auto}
+.enrol__inner h2{color:white;font-size:clamp(1.75rem,3vw,2.5rem);font-weight:var(--fw-extrabold);letter-spacing:var(--tracking-tight);margin-block:16px}
+.enrol__inner p{color:rgba(255,255,255,0.6);font-size:1rem;line-height:1.7;margin-bottom:36px}
+.enrol__actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:32px}
+.enrol__detail{display:flex;gap:28px;justify-content:center;flex-wrap:wrap}
+.enrol__detail-item{display:flex;align-items:center;gap:7px;font-size:0.875rem;color:rgba(255,255,255,0.45)}
+.enrol__detail-item svg{width:15px;height:15px;color:#14B8A6}
+
+/* MINI FOOTER */
+.footer-mini{background:#060d1f;padding-block:26px}
+.footer-mini__inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.footer-mini p{font-size:0.8125rem;color:rgba(255,255,255,0.3)}
+.footer-mini__links{display:flex;gap:20px}
+.footer-mini__links a{font-size:0.8125rem;color:rgba(255,255,255,0.4);transition:color var(--transition-fast)}
+.footer-mini__links a:hover{color:white}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .course__layout{grid-template-columns:1fr}
+  .course__toc{display:none}
+  .outcomes__grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:640px){
+  .navbar__links{display:none}
+  .outcomes__grid{grid-template-columns:1fr}
+  .training-hero__actions{flex-direction:column}
+  .training-hero__actions .btn{width:100%;justify-content:center}
+  .enrol__actions{flex-direction:column;align-items:center}
+  .enrol__actions .btn{width:100%;max-width:320px;justify-content:center}
+  .footer-mini__inner{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="navbar">
+  <div class="container navbar__inner">
+    <a href="../../index.html" class="navbar__brand">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+      </span>
+      Transys
+    </a>
+    <nav class="navbar__links">
+      <a href="../../index.html">Home</a>
+      <a href="../../index.html#services">Services</a>
+      <a href="../../index.html#pricing">Pricing</a>
+      <a href="../../index.html#contact">Contact</a>
+    </nav>
+    <a href="https://wa.me/256753300656?text=Hi%20Transys%2C%20I%20want%20to%20enrol%20in%20the%207-day%20WiFi%20training%20course." target="_blank" class="btn btn-accent">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/>
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.002-1.375l-.36-.214-3.727.977.995-3.635-.235-.374A9.778 9.778 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/>
+      </svg>
+      Enrol Now
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="training-hero">
+  <div class="container">
+    <div class="training-hero__inner">
+      <span class="eyebrow eyebrow-teal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 9l-10-7L2 9l10 7 10-7z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/>
+        </svg>
+        Hands-On Training Programme
+      </span>
+      <h1>Don't just buy a hotspot.<br/><span>Learn to build one yourself.</span></h1>
+      <p>A 7-day practical course covering everything from cabling and MikroTik configuration to billing systems and running a profitable WiFi business in Uganda — independently.</p>
+      <div class="training-hero__actions">
+        <a href="https://wa.me/256753300656?text=Hi%20Transys%2C%20I%20want%20to%20enrol%20in%20the%207-day%20WiFi%20Hotspot%20Training%20Course.%20Please%20send%20me%20details%20on%20the%20next%20intake%2C%20cost%2C%20and%20schedule." target="_blank" class="btn btn-wa">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.002-1.375l-.36-.214-3.727.977.995-3.635-.235-.374A9.778 9.778 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
+          Enrol on WhatsApp
+        </a>
+        <a href="#course" class="btn btn-outline">View Full Course Outline</a>
+      </div>
+      <div class="training-hero__stats">
+        <div class="hero-stat"><strong>7</strong><span>Days of training</span></div>
+        <div class="hero-stat"><strong>14+</strong><span>Modules covered</span></div>
+        <div class="hero-stat"><strong>100%</strong><span>Hands-on practicals</span></div>
+        <div class="hero-stat"><strong>0753 300656</strong><span>WhatsApp to enrol</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section class="outcomes">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow" style="background:var(--color-accent-light);color:var(--color-accent);margin-bottom:14px">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        What You Will Be Able To Do
+      </span>
+      <h2>By Day 7 you run a complete hotspot network independently</h2>
+      <p>Every module ends with a practical. On the final day, students deploy a full live network from scratch.</p>
+    </div>
+    <div class="outcomes__grid">
+      <div class="outcome-card">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><circle cx="6" cy="6" r="1" fill="currentColor" stroke="none"/><circle cx="6" cy="18" r="1" fill="currentColor" stroke="none"/></svg></div>
+        <h4>Configure MikroTik Routers</h4>
+        <p>Install RouterOS, set up DHCP, configure firewalls, and manage users through WinBox — from scratch.</p>
+      </div>
+      <div class="outcome-card">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16"/><circle cx="4" cy="9" r="2"/><circle cx="20" cy="9" r="2"/><path d="M4 15h16"/><circle cx="4" cy="15" r="2"/><circle cx="20" cy="15" r="2"/></svg></div>
+        <h4>Crimp and Route CAT6 Cable</h4>
+        <p>Make professional T568A/T568B cables, test them, and route them neatly using adaptable boxes and cable management.</p>
+      </div>
+      <div class="outcome-card">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <h4>Build a Hotspot and Sell Vouchers</h4>
+        <p>Create a captive portal, brand the login page, generate vouchers, and integrate mobile money billing.</p>
+      </div>
+      <div class="outcome-card">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a11 11 0 0 1 14 0"/><path d="M8.5 16.5a6 6 0 0 1 7 0"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/></svg></div>
+        <h4>Deploy Wireless Links</h4>
+        <p>Mount and align Ubiquiti and MikroTik point-to-point links, understand Fresnel zones, and run throughput tests.</p>
+      </div>
+      <div class="outcome-card">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></div>
+        <h4>Diagnose and Troubleshoot</h4>
+        <p>Use ping, traceroute, Torch, and interface stats to find and fix faults — cable issues, slow speeds, and more.</p>
+      </div>
+      <div class="outcome-card">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+        <h4>Start and Scale a WiFi Business</h4>
+        <p>Price packages, calculate margins, advertise on WhatsApp and Facebook, and plan expansion to multiple sites.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSE OUTLINE -->
+<section class="course" id="course">
+  <div class="container">
+    <div class="course__layout">
+
+      <!-- Sidebar TOC -->
+      <aside class="course__toc">
+        <p class="course__toc-title">Jump to a day</p>
+        <nav class="day-nav" id="dayNav">
+          <a href="#day1"><span class="day-num">1</span>ISP &amp; Networking Basics</a>
+          <a href="#day2"><span class="day-num">2</span>Cabling &amp; Fibre</a>
+          <a href="#day3"><span class="day-num">3</span>MikroTik &amp; Routing</a>
+          <a href="#day4"><span class="day-num">4</span>Hotspot Configuration</a>
+          <a href="#day5"><span class="day-num">5</span>Vouchers &amp; Billing</a>
+          <a href="#day6"><span class="day-num">6</span>Wireless &amp; Troubleshooting</a>
+          <a href="#day7"><span class="day-num">7</span>Business &amp; Final Project</a>
+        </nav>
+        <div class="course__toc-cta">
+          <p>Ready to start? Message us on WhatsApp to book your seat.</p>
+          <a href="https://wa.me/256753300656?text=Hi%20Transys%2C%20I%20want%20to%20enrol%20in%20the%207-day%20WiFi%20Training.%20Please%20tell%20me%20the%20next%20intake%20date%20and%20training%20fee." target="_blank" class="btn btn-accent">Book Your Seat</a>
+        </div>
+      </aside>
+
+      <!-- Days -->
+      <div class="course__days">
+
+        <!-- DAY 1 -->
+        <div class="day-block" id="day1">
+          <div class="day-header">
+            <div class="day-badge"><span class="day-word">Day</span><span class="day-n">1</span></div>
+            <div><h2>Introduction to ISP &amp; Networking Fundamentals</h2><p>Understanding the business model and the network basics that power it</p></div>
+          </div>
+          <div class="modules-grid">
+            <div class="module-card is-open">
+              <div class="module-card__head" onclick="toggleModule(this)">
+                <div class="module-card__title"><span class="module-num">Module 1</span><h3>Introduction to ISP and Hotspot Business</h3></div>
+                <span class="module-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </div>
+              <div class="module-body"><div class="module-body__inner">
+                <div class="module-items">
+                  <div class="module-item">What a hotspot business is and how it earns money</div>
+                  <div class="module-item">Business models — voucher systems, subscription plans, monthly clients</div>
+                  <div class="module-item">Required equipment and realistic startup costs</div>
+                  <div class="module-item">Planning coverage areas and identifying target customers</div>
+                  <div class="module-item">Common challenges and how to solve them</div>
+                </div>
+              </div></div>
+            </div>
+            <div class="module-card">
+              <div class="module-card__head" onclick="toggleModule(this)">
+                <div class="module-card__title"><span class="module-num">Module 2</span><h3>Networking Fundamentals &amp; Wireless Basics</h3></div>
+                <span class="module-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </div>
+              <div class="module-body"><div class="module-body__inner">
+                <div class="module-items">
+                  <div class="module-item">IP addresses, DHCP, DNS, gateway addresses</div>
+                  <div class="module-item">Bandwidth concepts explained practically</div>
+                  <div class="module-item">Access point modes and SSIDs</div>
+                  <div class="module-item">2.4 GHz vs 5 GHz bands — when to use each</div>
+                  <div class="module-item">Channel selection and reducing frequency interference</div>
+                </div>
+                <div class="practical-box">
+                  <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Practical</h4>
+                  <ul>
+                    <li>Access a live router and navigate its settings</li>
+                    <li>View and record network settings</li>
+                    <li>Complete IP addressing exercises</li>
+                  </ul>
+                </div>
+              </div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DAY 2 -->
+        <div class="day-block" id="day2">
+          <div class="day-header">
+            <div class="day-badge"><span class="day-word">Day</span><span class="day-n">2</span></div>
+            <div><h2>Cabling and Fibre Fundamentals</h2><p>Professional cable work — the foundation of every reliable network</p></div>
+          </div>
+          <div class="modules-grid">
+            <div class="module-card">
+              <div class="module-card__head" onclick="toggleModule(this)">
+                <div class="module-card__title"><span class="module-num">Module 3</span><h3>Ethernet Cabling</h3></div>
+                <span class="module-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </div>
+              <div class="module-body"><div class="module-body__inner">
+                <div class="module-items">
+                  <div class="module-item">CAT5e and CAT6 cable differences and when to use each</div>
+                  <div class="module-item">T568A and T568B wiring standards</div>
+                  <div class="module-item">RJ45 connector crimping technique</div>
+                  <div class="module-item">Cable testing procedures</div>
+                  <div class="module-item">Cable management and safety procedures</div>
+                </div>
+              </div></div>
+            </div>
+            <div class="module-card">
+              <div class="module-card__head" onclick="toggleModule(this)">
+                <div class="module-card__title"><span class="module-num">Module 4</span><h3>Fibre, GPON &amp; Installation Skills</h3></div>
+                <span class="module-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </div>
+              <div class="module-body"><div class="module-body__inner">
+                <div class="module-items">
+                  <div class="module-item">Fibre optic concepts — how light carries data</div>
+                  <div class="module-item">OLT and ONU/GPON router roles</div>
+                  <div class="module-item">SC/APC connector types</div>
+                  <div class="module-item">POE concepts — powering access points over cable</div>
+                  <div class="module-item">Kajegere — neat, professional cable dressing</div>
+                  <div class="module-item">Adaptable boxes, power supplies, and grounding</div>
+                </div>
+                <div class="practical-box">
+                  <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Practical</h4>
+                  <ul>
+                    <li>Crimp RJ45 connectors onto CAT6 cable</li>
+                    <li>Test completed cables with a cable tester</li>
+                    <li>Install and connect a GPON router</li>
+                  </ul>
+                </div>
+              </div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DAY 3 -->
+        <div class="day-block" id="day3">
+          <div class="day-header">
+            <div class="day-badge"><span class="day-word">Day</span><span class="day-n">3</span></div>
+            <div><h2>MikroTik Fundamentals and Routing</h2><p>The core tool of every professional Ugandan hotspot network</p></div>
+          </div>
+          <div class="modules-grid">
+            <div class="module-card">
+              <div class="module-card__head" onclick="toggleModule(this)">
+                <div class="module-card__title"><span class="module-num">Module 5</span><h3>MikroTik Fundamentals</h3></div>
+                <span class="module-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </div>
+              <div class="module-body"><div class="module-body__inner">
+                <div class="module-items">
+                  <div class="module-item">RouterOS overview and architecture</div>
+                  <div class="module-item">WinBox interface navigation</div>
+                  <div class="module-item">User management and access levels</div>
+                  <div class="module-item">Backup, restore, and upgrading RouterOS</div>
+                </div>
+              </div></div>
+            </div>
+            <div class="module-card">
+              <div class="module-card__head" onclick="toggleModule(this)">
+                <div class="module-card__title"><span class="module-num">Module 6</span><h3>IP Addressing, Routing &amp; Firewall Basics</h3></div>
+                <span class="module-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </div>
+              <div class="module-body"><div class="module-body__inner">
+                <div class="module-items">
+                  <div class="module-item">Static IP configuration</div>
+                  <div class="module-item">DHCP Server and DHCP Client setup</div>
+                  <div class="module-item">Firewall input and forward chains</div>
+                  <div class="module-item">NAT basics — sharing one IP with many users</div>
+                  <div class="module-item">Basic security rules to protect the router</div>
+                </div>
+                <div class="practical-box">
+                  <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Practical</h4>
+                  <ul>
+                    <li>Configure an RB951 router from factory default</li>
+                    <li>Assign static and dynamic IP addresses</li>
+                    <li>Set up a working DHCP Server</li>
+                  </ul>
+                </div>
+              </div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DAY 4 -->
+        <div class="day-block" id="day4">
+          <div class="day-header">
+            <div class="day-badge"><span class="day-word">Day</span><span class="day-n">4</span></div>
+            <div><h2>Hotspot Configuration</h2><p>Building the system your customers will actually pay to use</p></div>
+          </div>
+          <div class="modules-grid">
+            <div class="module-card">
+              <div class="module-card__head" onclick="toggleModule(this)">
+                <div class="module-card__title"><span class="module-num">Module 7</span><h3>Hotspot Setup &amp; Captive Portal Customisation</h3></div>
+                <span class="module-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </div>
+              <div class="module-body"><div class="module-body__inner">
+                <div class="module-items">
+                  <div class="module-item">Creating a hotspot server from scratch</div>
+                  <div class="module-item">User profiles — speed, data, and time limits</div>
+                  <div class="module-item">Shared users and session management</div>
+                  <div class="module-item">Cookie authentication and Walled Garden</div>
+                  <div class="module-item">Custom HTML login pages with branding and logos</div>
+                  <div class="module-item">Advertising and redirect pages</div>
+                </div>
+                <div class="practical-box">
+                  <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Practical</h4>
+                  <ul>
+                    <li>Create a complete hotspot server</li>
+                    <li>Configure user profiles and session limits</li>
+                    <li>Customise the login page with a logo and colour scheme</li>
+                  </ul>
+                </div>
+              </div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DAY 5 -->
+        <div class="day-block" id="day5">
+          <div class="day-header">
+            <div class="day-badge"><span class="day-word">Day</span><span class="day-n">5</span></div>
+            <div><h2>Voucher Systems and Billing</h2><p>The engine that turns your network into daily income</p></div>
+          </div>
+          <div class="modules-grid">
+            <div class="module-card">
+              <div class="module-card__head" onclick="toggleModule(this)">
+                <div class="module-card__title"><span class="module-num">Module 8</span><h3>Mikhmon Voucher System</h3></div>
+                <span class="module-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </div>
+              <div class="module-body"><div class="module-body__inner">
+                <div class="module-items">
+                  <div class="module-item">MikroTik hotspot vouchers and User Manager</div>
+                  <div class="module-item">Batch user generation for large deployments</div>
+                  <div class="module-item">Printing voucher batches for resale</div>
+                  <div class="module-item">Time-based and data-based packages</div>
+                </div>
+              </div></div>
+            </div>
+            <div class="module-card">
+              <div class="module-card__head" onclick="toggleModule(this)">
+                <div class="module-card__title"><span class="module-num">Module 9</span><h3>Xenfy Billing System</h3></div>
+                <span class="module-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </div>
+              <div class="module-body"><div class="module-body__inner">
+                <div class="module-items">
+                  <div class="module-item">Installation and initial configuration</div>
+                  <div class="module-item">Creating and managing internet packages</div>
+                  <div class="module-item">Voucher generation and user management</div>
+                  <div class="module-item">Monitoring active customers and usage</div>
+                </div>
+                <div class="practical-box">
+                  <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Practical</h4>
+                  <ul>
+                    <li>Generate and print a full batch of vouchers</li>
+                    <li>Create and price internet packages</li>
+                    <li>Conduct a live sale of internet access to a test device</li>
+                  </ul>
+                </div>
+              </div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DAY 6 -->
+        <div class="day-block" id="day6">
+          <div class="day-header">
+            <div class="day-badge"><span class="day-word">Day</span><span class="day-n">6</span></div>
+            <div><h2>Wireless Deployment and Troubleshooting</h2><p>Going outdoors — mounting, aligning, and diagnosing faults</p></div>
+          </div>
+          <div class="modules-grid">
+            <div class="module-card">
+              <div class="module-card__head" onclick="toggleModule(this)">
+                <div class="module-card__title"><span class="module-num">Module 12</span><h3>Point-to-Point Wireless Links</h3></div>
+                <span class="module-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </div>
+              <div class="module-body"><div class="module-body__inner">
+                <div class="module-items">
+                  <div class="module-item">Ubiquiti and MikroTik wireless link configuration</div>
+                  <div class="module-item">Antenna alignment procedures</div>
+                  <div class="module-item">Understanding Fresnel zone clearance</div>
+                  <div class="module-item">Throughput testing and signal optimisation</div>
+                </div>
+              </div></div>
+            </div>
+            <div class="module-card">
+              <div class="module-card__head" onclick="toggleModule(this)">
+                <div class="module-card__title"><span class="module-num">Module 13–14</span><h3>Installation Skills &amp; Troubleshooting</h3></div>
+                <span class="module-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </div>
+              <div class="module-body"><div class="module-body__inner">
+                <div class="module-items">
+                  <div class="module-item">Pole climbing safety and correct techniques</div>
+                  <div class="module-item">Mounting and waterproofing outdoor access points</div>
+                  <div class="module-item">Ping, Traceroute and MikroTik Torch tool</div>
+                  <div class="module-item">Interface statistics and bandwidth tests</div>
+                  <div class="module-item">Diagnosing cable faults and slow internet problems</div>
+                </div>
+                <div class="practical-box">
+                  <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Practical</h4>
+                  <ul>
+                    <li>Mount an access point on a pole or wall</li>
+                    <li>Align two antennas for a point-to-point link</li>
+                    <li>Troubleshoot a deliberately broken network</li>
+                  </ul>
+                </div>
+              </div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DAY 7 -->
+        <div class="day-block" id="day7">
+          <div class="day-header">
+            <div class="day-badge" style="background:linear-gradient(135deg,#0D9488,#059669)"><span class="day-word">Day</span><span class="day-n">7</span></div>
+            <div><h2>Business, Marketing &amp; Complete Project</h2><p>The graduation day — deploy a full live hotspot and start earning</p></div>
+          </div>
+          <div class="modules-grid">
+            <div class="module-card">
+              <div class="module-card__head" onclick="toggleModule(this)">
+                <div class="module-card__title"><span class="module-num">Module 17</span><h3>Business and Marketing</h3></div>
+                <span class="module-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </div>
+              <div class="module-body"><div class="module-body__inner">
+                <div class="module-items">
+                  <div class="module-item">Calculating realistic startup costs and payback periods</div>
+                  <div class="module-item">Pricing strategies and profit margin calculations</div>
+                  <div class="module-item">Customer support systems that retain clients</div>
+                  <div class="module-item">Advertising through WhatsApp and Facebook</div>
+                  <div class="module-item">Scaling from one location to multiple sites</div>
+                </div>
+              </div></div>
+            </div>
+            <div class="module-card is-open">
+              <div class="module-card__head" onclick="toggleModule(this)">
+                <div class="module-card__title"><span class="module-num">Module 18</span><h3>Complete Practical Project — Full Network Deployment</h3></div>
+                <span class="module-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </div>
+              <div class="module-body"><div class="module-body__inner">
+                <p style="font-size:0.9rem;color:var(--color-text-light);margin-bottom:16px;line-height:1.7">Students deploy a complete hotspot network from scratch — every step done independently.</p>
+                <div class="practical-box">
+                  <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Final Day Activities</h4>
+                  <ul>
+                    <li>Crimp CAT6 cables and route them professionally</li>
+                    <li>Configure MikroTik RB951 from factory reset</li>
+                    <li>Set up DHCP Server and firewall rules</li>
+                    <li>Create hotspot users and configure user profiles</li>
+                    <li>Set up Mikhmon or Xenfy voucher system</li>
+                    <li>Customise the captive portal login page</li>
+                    <li>Connect and configure access points</li>
+                    <li>Test all client devices on the live network</li>
+                    <li>Troubleshoot any issues found during testing</li>
+                    <li>Conduct a live internet sale to a real user</li>
+                  </ul>
+                </div>
+              </div></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end course__days -->
+    </div><!-- end course__layout -->
+  </div>
+</section>
+
+<!-- ENROL CTA -->
+<section class="enrol">
+  <div class="container">
+    <div class="enrol__inner">
+      <span class="eyebrow eyebrow-teal">Limited seats per intake</span>
+      <h2>Give a man a fish and he eats once.<br/>Teach him — and he earns for life.</h2>
+      <p>This training gives you the technical skills and business knowledge to run a profitable WiFi hotspot anywhere in Uganda, completely independently. Message us on WhatsApp to ask about the next intake date and training fee.</p>
+      <div class="enrol__actions">
+        <a href="https://wa.me/256753300656?text=Hi%20Transys%2C%20I%20want%20to%20enrol%20in%20the%207-day%20WiFi%20Hotspot%20Training%20Course.%20Please%20send%20me%20details%20about%20the%20next%20intake%2C%20training%20fee%2C%20and%20what%20to%20bring." target="_blank" class="btn btn-wa" style="padding:16px 28px;font-size:1rem">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L0 24l6.335-1.652A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.002-1.375l-.36-.214-3.727.977.995-3.635-.235-.374A9.778 9.778 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
+          Chat on WhatsApp — 0753 300656
+        </a>
+        <a href="tel:+256753300656" class="btn btn-outline" style="padding:16px 28px;font-size:1rem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+          Call Us Directly
+        </a>
+      </div>
+      <div class="enrol__detail">
+        <div class="enrol__detail-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>7 full days, hands-on</div>
+        <div class="enrol__detail-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Small group sizes</div>
+        <div class="enrol__detail-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Certificate on completion</div>
+        <div class="enrol__detail-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>WhatsApp support after training</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container footer-mini" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:28px">
+    <p style="font-size:0.8125rem;color:rgba(255,255,255,0.3)">Transys Network Solutions &copy; 2025</p>
+    <div style="display:flex;gap:20px">
+      <a href="../../index.html" style="font-size:0.8125rem;color:rgba(255,255,255,0.4)">Home</a>
+      <a href="../../index.html#services" style="font-size:0.8125rem;color:rgba(255,255,255,0.4)">Services</a>
+      <a href="../../index.html#contact" style="font-size:0.8125rem;color:rgba(255,255,255,0.4)">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleModule(head) {
+  const card = head.closest('.module-card');
+  card.classList.toggle('is-open');
+}
+
+// TOC active state
+const dayLinks = document.querySelectorAll('.day-nav a');
+const dayBlocks = document.querySelectorAll('.day-block');
+if (dayBlocks.length) {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        dayLinks.forEach(l => l.classList.remove('is-active'));
+        const a = document.querySelector(`.day-nav a[href="#${e.target.id}"]`);
+        if (a) a.classList.add('is-active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -65% 0px' });
+  dayBlocks.forEach(b => obs.observe(b));
+}
+</script>
+</body>
+</html>
