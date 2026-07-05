@@ -25,6 +25,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  
 }
 
 .navbar__brand {
@@ -158,4 +159,8 @@
 
 .navbar__mobile .btn {
   width: 100%;
+}
+
+.logo-mark__badge img{
+  max-height: 9rem;
 }
