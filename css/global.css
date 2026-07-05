@@ -85,6 +85,7 @@ p {
   background: var(--color-primary-dark);
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
+  color: var(--color-white);
 }
 
 .btn-primary:hover svg {
