@@ -193,6 +193,16 @@
 
 .training-logo {
   display: inline-block;
-  max-height: 12rem;
+  max-height: 14rem;
+  margin-bottom: 25px;
+  
+}
+
+.training-footer-logo img {
+  max-height: 18rem;
+  margin-top: -128px;
+  margin-bottom: -80px;
+  margin-left: -38px;
+
   
 }
