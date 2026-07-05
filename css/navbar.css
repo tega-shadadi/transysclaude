@@ -162,5 +162,13 @@
 }
 
 .logo-mark__badge img{
-  max-height: 9rem;
+  max-height: 12rem;
+}
+
+@media (max-width: 640px) {
+  .logo-mark__badge img{
+    max-height: 140px;
+    margin-right: 10px;
+  }
+  
 }
